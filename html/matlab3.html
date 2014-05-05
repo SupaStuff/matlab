@@ -1,0 +1,349 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>matlab3</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-04-21"><meta name="DC.source" content="matlab3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">ex 3.1</a></li><li><a href="#3">ex 3.2</a></li><li><a href="#4">ex 3.3</a></li><li><a href="#5">ex 3.4</a></li><li><a href="#6">ex 3.5</a></li><li><a href="#7">ex 3.6</a></li><li><a href="#8">ex 3.7</a></li></ul></div><pre class="codeinput"><span class="comment">%Jean Pe&ntilde;a</span>
+clc
+clf
+</pre><h2>ex 3.1<a name="2"></a></h2><pre class="codeinput">fprintf(<span class="string">'Exercise 3.1\n'</span>)
+fprintf(<span class="string">'x = linspace(0, pi, 5)'</span>)
+x = linspace(0, pi, 5)
+fprintf(<span class="string">'cos(x)'</span>)
+cos(x)
+fprintf(<span class="string">'sin(x)'</span>)
+sin(x)
+fprintf(<span class="string">'x.*sin(x)'</span>)
+x.*sin(x)
+fprintf(<span class="string">'x*sin(x) gives an error'</span>)
+<span class="comment">%x*sin(x)</span>
+</pre><pre class="codeoutput">Exercise 3.1
+x = linspace(0, pi, 5)
+x =
+
+         0    0.7854    1.5708    2.3562    3.1416
+
+cos(x)
+ans =
+
+    1.0000    0.7071    0.0000   -0.7071   -1.0000
+
+sin(x)
+ans =
+
+         0    0.7071    1.0000    0.7071    0.0000
+
+x.*sin(x)
+ans =
+
+         0    0.5554    1.5708    1.6661    0.0000
+
+x*sin(x) gives an error</pre><h2>ex 3.2<a name="3"></a></h2><pre class="codeinput">fprintf(<span class="string">'\n\n\nExercise 3.2\n'</span>)
+fprintf(<span class="string">'k = linspace(1,10,10)'</span>)
+k = linspace(1,10,10)
+fprintf(<span class="string">'w = 1./(k.^2) '</span>)
+w = 1./(k.^2)
+</pre><pre class="codeoutput">
+
+
+Exercise 3.2
+k = linspace(1,10,10)
+k =
+
+     1     2     3     4     5     6     7     8     9    10
+
+w = 1./(k.^2) 
+w =
+
+  Columns 1 through 7
+
+    1.0000    0.2500    0.1111    0.0625    0.0400    0.0278    0.0204
+
+  Columns 8 through 10
+
+    0.0156    0.0123    0.0100
+
+</pre><h2>ex 3.3<a name="4"></a></h2><pre class="codeinput">fprintf(<span class="string">'\n\n\nExercise 3.2\n'</span>)
+1 : 10 <span class="comment">% generate integers from 1 to 10. You do not need the spaces.</span>
+1 : .5 : 10 <span class="comment">% Generate numbers from 1 to 10 with spacing of .5 . (You can read the symbol as</span>
+            <span class="comment">%from 1 by .5 to 10.&#8221; When the middle number is omitted, it defaults to 1.)</span>
+10 : -1 : 1 <span class="comment">% You can generate numbers in decreasing order</span>
+1 : 1.5 : 9 <span class="comment">% The increment does not have to fill out the range exactly. Matlab stops at the</span>
+            <span class="comment">%largest value in the list before the endpoint.</span>
+
+fprintf(<span class="string">'x = 0:pi/4:pi is the same as linespace() in Exercise 3.1'</span>)
+x = 0:pi/4:pi
+fprintf(<span class="string">'cos(x)'</span>)
+cos(x)
+fprintf(<span class="string">'sin(x)'</span>)
+sin(x)
+fprintf(<span class="string">'x.*sin(x)'</span>)
+x.*sin(x)
+fprintf(<span class="string">'Again, x*sin(x) gives an error'</span>)
+<span class="comment">%x*sin(x)</span>
+</pre><pre class="codeoutput">
+
+
+Exercise 3.2
+
+ans =
+
+     1     2     3     4     5     6     7     8     9    10
+
+
+ans =
+
+  Columns 1 through 7
+
+    1.0000    1.5000    2.0000    2.5000    3.0000    3.5000    4.0000
+
+  Columns 8 through 14
+
+    4.5000    5.0000    5.5000    6.0000    6.5000    7.0000    7.5000
+
+  Columns 15 through 19
+
+    8.0000    8.5000    9.0000    9.5000   10.0000
+
+
+ans =
+
+    10     9     8     7     6     5     4     3     2     1
+
+
+ans =
+
+    1.0000    2.5000    4.0000    5.5000    7.0000    8.5000
+
+x = 0:pi/4:pi is the same as linespace() in Exercise 3.1
+x =
+
+         0    0.7854    1.5708    2.3562    3.1416
+
+cos(x)
+ans =
+
+    1.0000    0.7071    0.0000   -0.7071   -1.0000
+
+sin(x)
+ans =
+
+         0    0.7071    1.0000    0.7071    0.0000
+
+x.*sin(x)
+ans =
+
+         0    0.5554    1.5708    1.6661    0.0000
+
+Again, x*sin(x) gives an error</pre><h2>ex 3.4<a name="5"></a></h2><pre class="codeinput">fprintf(<span class="string">'\nExercise 3.4\nNot displaying because the instructions said not to. Check the code\n'</span>)
+<span class="comment">%a)</span>
+Xa=5:5:1000;
+<span class="comment">%b)</span>
+Xb=linspace(0,1,11);
+<span class="comment">%c)</span>
+Xc=linspace(0,2*pi,20);
+<span class="comment">%d)</span>
+Xd=1:1:4;
+Xd=Xd.^Xd;
+<span class="comment">%e)</span>
+Xe=[1 2 4 5];
+Xe=1./Xe;
+</pre><pre class="codeoutput">
+Exercise 3.4
+Not displaying because the instructions said not to. Check the code
+</pre><h2>ex 3.5<a name="6"></a></h2><pre class="codeinput">figure(1);
+fprintf(<span class="string">'\nExercise 3.5\n'</span>)
+X=[1 3 3 1 1];
+Y=[2 2 4 4 2];
+plot(X,Y, <span class="string">'r'</span>);
+axis <span class="string">equal</span>;
+axis([0 5 0 5]);
+title(sprintf(<span class="string">'A Square by Jean Pe&ntilde;a'</span>));
+</pre><pre class="codeoutput">
+Exercise 3.5
+</pre><img vspace="5" hspace="5" src="matlab3_01.png" alt=""> <h2>ex 3.6<a name="7"></a></h2><pre class="codeinput">figure(2);
+hold <span class="string">on</span>;
+x=-pi:pi/32:pi;
+y=sin(x.^2).*cos(x);
+dy=2.*x.*cos(x.^2).*cos(x) - sin(x.^2).*sin(x);
+g=plot(x,y);
+dg=plot(x,dy, <span class="string">'r'</span>);
+title(sprintf(<span class="string">'Graph of y=sin(x^2)cos(x) and y''\nJean Pe&ntilde;a'</span>));
+legend(<span class="string">'y'</span>, <span class="string">'y'''</span>);
+set(g, <span class="string">'LineStyle'</span>, <span class="string">'-'</span>);
+set(dg, <span class="string">'LineStyle'</span>, <span class="string">':'</span>);
+axis([-pi pi -6 6]);
+grid <span class="string">on</span>;
+set(gca, <span class="string">'XTick'</span>, -pi:pi/2:pi);
+set(gca, <span class="string">'XTickLabel'</span>, {<span class="string">'-pi'</span>; <span class="string">'-pi/2'</span>; <span class="string">'0'</span>; <span class="string">'pi/2'</span>; <span class="string">'pi'</span>})
+</pre><img vspace="5" hspace="5" src="matlab3_02.png" alt=""> <h2>ex 3.7<a name="8"></a></h2><pre class="codeinput">figure(3);
+t = 0:pi/32:2*pi; <span class="comment">%for a smooth circle pi/32 was more than enough</span>
+x = cos(t);
+y = sin(t);
+plot(x,y);
+axis <span class="string">equal</span>;
+title(sprintf(<span class="string">'&lt;cos(t), sin(t)&gt;\nJean Pe&ntilde;a'</span>));
+xlabel(<span class="string">'x'</span>);
+ylabel(<span class="string">'y'</span>);
+</pre><img vspace="5" hspace="5" src="matlab3_03.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%Jean Peña
+clc
+clf
+%% ex 3.1
+fprintf('Exercise 3.1\n')
+fprintf('x = linspace(0, pi, 5)')
+x = linspace(0, pi, 5)
+fprintf('cos(x)')
+cos(x)
+fprintf('sin(x)')
+sin(x)
+fprintf('x.*sin(x)')
+x.*sin(x)
+fprintf('x*sin(x) gives an error')
+%x*sin(x)
+
+%% ex 3.2
+fprintf('\n\n\nExercise 3.2\n')
+fprintf('k = linspace(1,10,10)')
+k = linspace(1,10,10)
+fprintf('w = 1./(k.^2) ')
+w = 1./(k.^2)
+
+%% ex 3.3
+fprintf('\n\n\nExercise 3.2\n')
+1 : 10 % generate integers from 1 to 10. You do not need the spaces.
+1 : .5 : 10 % Generate numbers from 1 to 10 with spacing of .5 . (You can read the symbol as
+            %from 1 by .5 to 10.” When the middle number is omitted, it defaults to 1.)
+10 : -1 : 1 % You can generate numbers in decreasing order
+1 : 1.5 : 9 % The increment does not have to fill out the range exactly. Matlab stops at the
+            %largest value in the list before the endpoint.
+
+fprintf('x = 0:pi/4:pi is the same as linespace() in Exercise 3.1')
+x = 0:pi/4:pi
+fprintf('cos(x)')
+cos(x)
+fprintf('sin(x)')
+sin(x)
+fprintf('x.*sin(x)')
+x.*sin(x)
+fprintf('Again, x*sin(x) gives an error')
+%x*sin(x)
+
+
+%% ex 3.4
+fprintf('\nExercise 3.4\nNot displaying because the instructions said not to. Check the code\n')
+%a)
+Xa=5:5:1000;
+%b)
+Xb=linspace(0,1,11);
+%c)
+Xc=linspace(0,2*pi,20);
+%d)
+Xd=1:1:4;
+Xd=Xd.^Xd;
+%e)
+Xe=[1 2 4 5];
+Xe=1./Xe;
+
+%% ex 3.5
+figure(1);
+fprintf('\nExercise 3.5\n')
+X=[1 3 3 1 1];
+Y=[2 2 4 4 2];
+plot(X,Y, 'r');
+axis equal;
+axis([0 5 0 5]);
+title(sprintf('A Square by Jean Peña'));
+
+%% ex 3.6
+figure(2);
+hold on;
+x=-pi:pi/32:pi;
+y=sin(x.^2).*cos(x);
+dy=2.*x.*cos(x.^2).*cos(x) - sin(x.^2).*sin(x);
+g=plot(x,y);
+dg=plot(x,dy, 'r');
+title(sprintf('Graph of y=sin(x^2)cos(x) and y''\nJean Peña'));
+legend('y', 'y''');
+set(g, 'LineStyle', '-');
+set(dg, 'LineStyle', ':');
+axis([-pi pi -6 6]);
+grid on;
+set(gca, 'XTick', -pi:pi/2:pi);
+set(gca, 'XTickLabel', {'-pi'; '-pi/2'; '0'; 'pi/2'; 'pi'})
+
+%% ex 3.7
+figure(3);
+t = 0:pi/32:2*pi; %for a smooth circle pi/32 was more than enough
+x = cos(t);
+y = sin(t);
+plot(x,y);
+axis equal;
+title(sprintf('<cos(t), sin(t)>\nJean Peña'));
+xlabel('x');
+ylabel('y');
+##### SOURCE END #####
+--></body></html>
