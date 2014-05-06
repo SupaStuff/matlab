@@ -1,0 +1,159 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>matlabTest</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-05-06"><meta name="DC.source" content="matlabTest.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">%Jean Pena</span>
+<span class="keyword">function</span> main
+<span class="comment">%clear</span>
+clf;
+clc;
+
+<span class="comment">%P(0.6, 0.8, f(0.6,0.8))</span>
+x0=0.6;
+y0=0.8;
+
+<span class="comment">%f(x,y)</span>
+syms <span class="string">x</span> <span class="string">y</span>;
+f=@(x,y)sin((x-2).^2).*y.^3;
+
+<span class="comment">%find f(0.6, 0.8)</span>
+z=f(x0,y0);
+
+<span class="comment">%getting gradient vector</span>
+dx=diff(f(x,y),x); <span class="comment">%derivative</span>
+dy=diff(f(x,y),y);
+dx=@(x,y)subs(dx); <span class="comment">%anonomize</span>
+dy=@(x,y)subs(dy);
+dx=dx(x0,y0); <span class="comment">%input values</span>
+dy=dy(x0,y0);
+
+<span class="comment">%graph f(x,y) in [0,1]x[0,1]</span>
+x=0:0.01:1;
+y=x;
+[x,y] = meshgrid(x,y);
+f = f(x,y);
+mesh(x,y,f);
+
+hold <span class="string">on</span>;
+
+<span class="comment">%plot the gradient vector</span>
+quiver3(x0,y0,z,dx, dy,0);
+
+<span class="comment">%some formatting</span>
+axis <span class="string">equal</span>;
+title(sprintf(<span class="string">'f(x,y)=sin((x-2)^2)*y^3 and gradient\nJean Pe&ntilde;a'</span>));
+xlabel(<span class="string">'x'</span>);
+ylabel(<span class="string">'y'</span>);
+zlabel(<span class="string">'z'</span>);
+view([2 1 1]);
+</pre><img vspace="5" hspace="5" src="matlabTest_01.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%Jean Pena
+function main
+%clear
+clf;
+clc;
+
+%P(0.6, 0.8, f(0.6,0.8))
+x0=0.6;
+y0=0.8;
+
+%f(x,y)
+syms x y;
+f=@(x,y)sin((x-2).^2).*y.^3;
+
+%find f(0.6, 0.8)
+z=f(x0,y0);
+
+%getting gradient vector
+dx=diff(f(x,y),x); %derivative
+dy=diff(f(x,y),y);
+dx=@(x,y)subs(dx); %anonomize
+dy=@(x,y)subs(dy);
+dx=dx(x0,y0); %input values
+dy=dy(x0,y0);
+
+%graph f(x,y) in [0,1]x[0,1]
+x=0:0.01:1;
+y=x;
+[x,y] = meshgrid(x,y);
+f = f(x,y);
+mesh(x,y,f);
+
+hold on;
+
+%plot the gradient vector
+quiver3(x0,y0,z,dx, dy,0);
+
+%some formatting
+axis equal;
+title(sprintf('f(x,y)=sin((x-2)^2)*y^3 and gradient\nJean Peña'));
+xlabel('x');
+ylabel('y');
+zlabel('z');
+view([2 1 1]);
+##### SOURCE END #####
+--></body></html>
