@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>matlabNo5</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-05-05"><meta name="DC.source" content="matlabNo5.m"><style type="text/css">
+      --><title>matlabNo5</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-05-14"><meta name="DC.source" content="matlabNo5.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
   </style></head><body><div class="content"><pre class="codeinput"><span class="comment">%Jean Pe&ntilde;a</span>
 <span class="keyword">function</span> main(x0,y0)
-<span class="comment">%both parameters ae not required, but they will be 1 if not input</span>
+<span class="comment">%both parameters are not required, but they will be 1 if not input</span>
 <span class="keyword">if</span> (nargin&lt;2) y0=1; <span class="keyword">end</span>
 <span class="keyword">if</span> (nargin&lt;1) x0=1; <span class="keyword">end</span>
 
@@ -97,11 +97,18 @@ graphIt(f, -1, 1, -1, 1, 0.05);
 <span class="comment">%draw the gradient vector</span>
 gradientVector=quiver(x0,y0,dx, dy);
 set(gradientVector, <span class="string">'Color'</span>, <span class="string">'green'</span>, <span class="string">'LineWidth'</span>, 2);
+<span class="comment">%draw the tangent of the curve on the surface</span>
 tangentVector=quiver3(x0,y0,z,dxt,dyt,dzt);
 set(tangentVector, <span class="string">'Color'</span>, <span class="string">'red'</span>, <span class="string">'LineWidth'</span>, 2);
+
+<span class="comment">%some formatting</span>
 axis <span class="string">equal</span>;
 axis([-1 1 -2 1 -1 2]);
 title(sprintf(<span class="string">'f(x,y)=x^2*sin(pi*y) and some stuff\nJean Pe&ntilde;a'</span>));
+xlabel(<span class="string">'x'</span>);
+ylabel(<span class="string">'y'</span>);
+zlabel(<span class="string">'z'</span>);
+view([2 -2 2]);
 <span class="keyword">end</span>
 
 <span class="keyword">function</span> [dx, dy] = gradient(f, x, y)
@@ -136,32 +143,38 @@ title(sprintf(<span class="string">'f(x,y)=x^2*sin(pi*y) and some stuff\nJean Pe
     Y=Ymin:interval:Ymax;
     [X,Y] = meshgrid(X,Y);
     fn = f(X,Y);
-    surf(X,Y,fn);
+    <span class="comment">%surf(X,Y,fn);</span>
+    mesh(X,Y,fn);
 <span class="keyword">end</span>
 
 <span class="keyword">function</span> [xt,yt,zt] = paramIt(dx,dy,f,x,y,t,x0,y0)
-    <span class="comment">%xt=dx/sqrt(dx^2+dy^2);</span>
-    <span class="comment">%yt=dy/sqrt(dx^2+dy^2);</span>
-
+    <span class="comment">%parameterizes a vector &lt;dx,dy&gt; going through the point (x,y)</span>
+    <span class="comment">%does r(t) = r0 + v*t</span>
     xt=(x0+dx.*t);
     yt=(y0+dy.*t);
+
+    <span class="comment">%then substitutes x and y in f(x,y) with the above parameterization</span>
     zt=subs(f,x,xt);
     zt=subs(zt,y,yt);
 
-    <span class="comment">%xt=@(t)subs(xt, t);</span>
-    <span class="comment">%yt=@(t)subs(yt, t);</span>
-    <span class="comment">%zt=@(t)subs(zt, t);</span>
+    <span class="comment">%returns the parameterization of the curve along the surface in</span>
+    <span class="comment">%the direction of the vector &lt;dx,dy&gt; that goes through the point (x,y)</span>
 <span class="keyword">end</span>
 
 <span class="keyword">function</span> [dxt,dyt,dzt] = tangInt(xt, yt, zt, t, t0)
+    <span class="comment">%returns the tangent vector of some vector function at the point t=t0</span>
+
+    <span class="comment">%derivative</span>
     dxt=diff(xt);
     dyt=diff(yt);
     dzt=diff(zt);
 
+    <span class="comment">%fix for input</span>
     dxt=@(t)subs(dxt);
     dyt=@(t)subs(dyt);
     dzt=@(t)subs(dzt);
 
+    <span class="comment">%values at t=t0</span>
     dxt=dxt(t0);
     dyt=dyt(t0);
     dzt=dzt(t0);
@@ -170,7 +183,7 @@ title(sprintf(<span class="string">'f(x,y)=x^2*sin(pi*y) and some stuff\nJean Pe
 ##### SOURCE BEGIN #####
 %Jean Peña
 function main(x0,y0)
-%both parameters ae not required, but they will be 1 if not input
+%both parameters are not required, but they will be 1 if not input
 if (nargin<2) y0=1; end
 if (nargin<1) x0=1; end
 
@@ -200,11 +213,18 @@ graphIt(f, -1, 1, -1, 1, 0.05);
 %draw the gradient vector
 gradientVector=quiver(x0,y0,dx, dy);
 set(gradientVector, 'Color', 'green', 'LineWidth', 2);
+%draw the tangent of the curve on the surface
 tangentVector=quiver3(x0,y0,z,dxt,dyt,dzt);
 set(tangentVector, 'Color', 'red', 'LineWidth', 2);
+
+%some formatting
 axis equal;
 axis([-1 1 -2 1 -1 2]);
 title(sprintf('f(x,y)=x^2*sin(pi*y) and some stuff\nJean Peña'));
+xlabel('x');
+ylabel('y');
+zlabel('z');
+view([2 -2 2]);
 end
 
 function [dx, dy] = gradient(f, x, y)
@@ -239,32 +259,38 @@ function graphIt(f, Xmin, Xmax, Ymin, Ymax, interval)
     Y=Ymin:interval:Ymax;
     [X,Y] = meshgrid(X,Y);
     fn = f(X,Y);
-    surf(X,Y,fn);
+    %surf(X,Y,fn);
+    mesh(X,Y,fn);
 end
 
 function [xt,yt,zt] = paramIt(dx,dy,f,x,y,t,x0,y0)
-    %xt=dx/sqrt(dx^2+dy^2);
-    %yt=dy/sqrt(dx^2+dy^2);
-    
+    %parameterizes a vector <dx,dy> going through the point (x,y)
+    %does r(t) = r0 + v*t
     xt=(x0+dx.*t);
     yt=(y0+dy.*t);
+    
+    %then substitutes x and y in f(x,y) with the above parameterization
     zt=subs(f,x,xt);
     zt=subs(zt,y,yt);
     
-    %xt=@(t)subs(xt, t);
-    %yt=@(t)subs(yt, t);
-    %zt=@(t)subs(zt, t);
+    %returns the parameterization of the curve along the surface in
+    %the direction of the vector <dx,dy> that goes through the point (x,y)
 end
 
 function [dxt,dyt,dzt] = tangInt(xt, yt, zt, t, t0)
+    %returns the tangent vector of some vector function at the point t=t0
+    
+    %derivative
     dxt=diff(xt);
     dyt=diff(yt);
     dzt=diff(zt);
     
+    %fix for input
     dxt=@(t)subs(dxt);
     dyt=@(t)subs(dyt);
     dzt=@(t)subs(dzt);
     
+    %values at t=t0
     dxt=dxt(t0);
     dyt=dyt(t0);
     dzt=dzt(t0);

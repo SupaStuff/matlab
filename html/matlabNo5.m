@@ -1,6 +1,6 @@
 %Jean Peña
 function main(x0,y0)
-%both parameters ae not required, but they will be 1 if not input
+%both parameters are not required, but they will be 1 if not input
 if (nargin<2) y0=1; end
 if (nargin<1) x0=1; end
 
@@ -30,11 +30,18 @@ graphIt(f, -1, 1, -1, 1, 0.05);
 %draw the gradient vector
 gradientVector=quiver(x0,y0,dx, dy);
 set(gradientVector, 'Color', 'green', 'LineWidth', 2);
+%draw the tangent of the curve on the surface
 tangentVector=quiver3(x0,y0,z,dxt,dyt,dzt);
 set(tangentVector, 'Color', 'red', 'LineWidth', 2);
+
+%some formatting
 axis equal;
 axis([-1 1 -2 1 -1 2]);
 title(sprintf('f(x,y)=x^2*sin(pi*y) and some stuff\nJean Peña'));
+xlabel('x');
+ylabel('y');
+zlabel('z');
+view([2 -2 2]);
 end
 
 function [dx, dy] = gradient(f, x, y)
@@ -69,32 +76,38 @@ function graphIt(f, Xmin, Xmax, Ymin, Ymax, interval)
     Y=Ymin:interval:Ymax;
     [X,Y] = meshgrid(X,Y);
     fn = f(X,Y);
-    surf(X,Y,fn);
+    %surf(X,Y,fn);
+    mesh(X,Y,fn);
 end
 
 function [xt,yt,zt] = paramIt(dx,dy,f,x,y,t,x0,y0)
-    %xt=dx/sqrt(dx^2+dy^2);
-    %yt=dy/sqrt(dx^2+dy^2);
-    
+    %parameterizes a vector <dx,dy> going through the point (x,y)
+    %does r(t) = r0 + v*t
     xt=(x0+dx.*t);
     yt=(y0+dy.*t);
+    
+    %then substitutes x and y in f(x,y) with the above parameterization
     zt=subs(f,x,xt);
     zt=subs(zt,y,yt);
     
-    %xt=@(t)subs(xt, t);
-    %yt=@(t)subs(yt, t);
-    %zt=@(t)subs(zt, t);
+    %returns the parameterization of the curve along the surface in
+    %the direction of the vector <dx,dy> that goes through the point (x,y)
 end
 
 function [dxt,dyt,dzt] = tangInt(xt, yt, zt, t, t0)
+    %returns the tangent vector of some vector function at the point t=t0
+    
+    %derivative
     dxt=diff(xt);
     dyt=diff(yt);
     dzt=diff(zt);
     
+    %fix for input
     dxt=@(t)subs(dxt);
     dyt=@(t)subs(dyt);
     dzt=@(t)subs(dzt);
     
+    %values at t=t0
     dxt=dxt(t0);
     dyt=dyt(t0);
     dzt=dzt(t0);
